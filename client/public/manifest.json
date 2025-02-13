@@ -1,0 +1,17 @@
+{
+  "name": "Shree Taarini Home Stay",
+  "short_name": "Shree Taarini",
+  "description": "Divine hospitality near Mahakal Temple",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#fff7ed",
+  "theme_color": "#c2410c",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/7564/7564393.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
