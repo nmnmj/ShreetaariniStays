@@ -118,7 +118,7 @@ export default function Home() {
               <img 
                 src="/mahakalcardpng.png" 
                 alt="Business Card"
-                className="w-full rounded-lg shadow-xl"
+                className="w-full rounded-lg shadow-xl transform transition-transform hover:scale-105"
               />
             </motion.div>
           </motion.div>
@@ -141,9 +141,9 @@ export default function Home() {
               transition={{ type: "spring", stiffness: 300 }}
             >
               <img 
-                src="/WhatsApp Image 2024-08-18 at 4.03.13 PM.jpeg" 
+                src="/beautyparlour.jpeg" 
                 alt="Blossom Beauty Parlour"
-                className="w-full rounded-lg shadow-xl"
+                className="w-full rounded-lg shadow-xl transform transition-transform hover:scale-105"
               />
             </motion.div>
             <div className="order-1 md:order-2 space-y-6">
