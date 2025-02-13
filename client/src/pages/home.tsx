@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import RoomCard from "@/components/rooms/room-card";
 import { Button } from "@/components/ui/button";
-import { Phone } from "lucide-react";
+import { Phone, MapPin, Mail } from "lucide-react";
 import type { Room } from "@shared/schema";
 import { useLanguage } from "@/lib/language-context";
 import { motion } from "framer-motion";
@@ -69,7 +69,7 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.7 }}
             >
-              <a href="tel:8770068048">
+              <a href="tel:8770032703">
                 <Button size="lg" className="gap-2 bg-orange-600 hover:bg-orange-700 transition-colors">
                   <Phone className="h-5 w-5" />
                   {t('hero.bookNow')}
@@ -78,6 +78,87 @@ export default function Home() {
             </motion.div>
           </div>
         </motion.div>
+      </div>
+
+      {/* Owner Info Section */}
+      <div className="bg-orange-50 py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            className="grid md:grid-cols-2 gap-8 items-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <div className="space-y-6">
+              <h2 className="text-3xl font-bold text-orange-900">Meet Your Host</h2>
+              <p className="text-lg text-orange-800">
+                Welcome to Shree Taarini Home Stay. I'm Divyanshu Jay, your host, dedicated to providing you with a comfortable and spiritual stay experience near the sacred Mahakal Temple.
+              </p>
+              <div className="space-y-3">
+                <div className="flex items-center gap-2 text-orange-700">
+                  <Phone className="h-5 w-5" />
+                  <a href="tel:8770032703">+91 8770032703</a>
+                </div>
+                <div className="flex items-center gap-2 text-orange-700">
+                  <Mail className="h-5 w-5" />
+                  <a href="mailto:shreetaarini@gmail.com">shreetaarini@gmail.com</a>
+                </div>
+                <div className="flex items-center gap-2 text-orange-700">
+                  <MapPin className="h-5 w-5" />
+                  <span>167, Manchaman Ganesh Colony, Ujjain (M.P.)</span>
+                </div>
+              </div>
+            </div>
+            <motion.div 
+              className="relative"
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <img 
+                src="/mahakalcardpng.png" 
+                alt="Business Card"
+                className="w-full rounded-lg shadow-xl"
+              />
+            </motion.div>
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Beauty Parlour Section */}
+      <div className="bg-gradient-to-b from-white to-orange-50 py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div 
+            className="grid md:grid-cols-2 gap-8 items-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <motion.div 
+              className="order-2 md:order-1 relative rounded-lg overflow-hidden"
+              whileHover={{ scale: 1.02 }}
+              transition={{ type: "spring", stiffness: 300 }}
+            >
+              <img 
+                src="/WhatsApp Image 2024-08-18 at 4.03.13 PM.jpeg" 
+                alt="Blossom Beauty Parlour"
+                className="w-full rounded-lg shadow-xl"
+              />
+            </motion.div>
+            <div className="order-1 md:order-2 space-y-6">
+              <h2 className="text-3xl font-bold text-orange-900">Blossom Beauty Parlour</h2>
+              <p className="text-lg text-orange-800">
+                Enhance your stay with our on-premise beauty services at Blossom Beauty Parlour. 
+                Experience professional beauty treatments and pampering sessions during your spiritual journey.
+              </p>
+              <Button variant="outline" size="lg" className="gap-2">
+                <Phone className="h-5 w-5" />
+                Book Appointment
+              </Button>
+            </div>
+          </motion.div>
+        </div>
       </div>
 
       {/* Rooms Section */}
