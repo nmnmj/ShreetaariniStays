@@ -6,15 +6,16 @@ export const rooms = pgTable("rooms", {
   id: serial("id").primaryKey(),
   name: text("name").notNull(),
   description: text("description").notNull(),
-  price: numeric("price").notNull(),
+  price: text("price").notNull(), // Store as text to avoid precision issues
   amenities: text("amenities").array().notNull(),
   images: text("images").array().notNull(),
   isAvailable: boolean("is_available").notNull().default(true)
 });
 
-// Extend the auto-generated schema to ensure price is handled as string
+// Extend the auto-generated schema to handle price as numeric
 export const insertRoomSchema = createInsertSchema(rooms, {
-  price: z.string().min(1, "Price is required")
+  price: z.number().min(0, "Price must be positive")
+    .transform(price => price.toString()) // Transform to string for storage
 }).omit({ id: true });
 
 export const users = pgTable("users", {

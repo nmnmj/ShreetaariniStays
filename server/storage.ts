@@ -27,14 +27,20 @@ export class DatabaseStorage implements IStorage {
   }
 
   async createRoom(room: InsertRoom): Promise<Room> {
-    const [newRoom] = await db.insert(rooms).values(room).returning();
+    const [newRoom] = await db.insert(rooms).values({
+      ...room,
+      price: room.price.toString(), // Ensure price is stored as string
+    }).returning();
     return newRoom;
   }
 
   async updateRoom(id: number, room: Partial<InsertRoom>): Promise<Room | undefined> {
     const [updated] = await db
       .update(rooms)
-      .set(room)
+      .set({
+        ...room,
+        price: room.price?.toString(), // Convert price to string if it exists
+      })
       .where(eq(rooms.id, id))
       .returning();
     return updated;

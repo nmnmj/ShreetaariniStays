@@ -23,13 +23,13 @@ interface RoomFormProps {
 export default function RoomForm({ onSubmit, initialData }: RoomFormProps) {
   const form = useForm<InsertRoom>({
     resolver: zodResolver(insertRoomSchema),
-    defaultValues: initialData || {
-      name: "",
-      description: "",
-      price: "",
-      amenities: [],
-      images: [],
-      isAvailable: true
+    defaultValues: {
+      name: initialData?.name || "",
+      description: initialData?.description || "",
+      price: initialData ? parseFloat(initialData.price) : 0,
+      amenities: initialData?.amenities || [],
+      images: initialData?.images || [],
+      isAvailable: initialData?.isAvailable ?? true
     }
   });
 
@@ -74,10 +74,9 @@ export default function RoomForm({ onSubmit, initialData }: RoomFormProps) {
                 <Input 
                   type="number"
                   {...field}
-                  onChange={(e) => {
-                    const value = e.target.value;
-                    field.onChange(value ? value.toString() : "");
-                  }}
+                  onChange={(e) => field.onChange(parseFloat(e.target.value) || 0)}
+                  value={field.value}
+                  min={0}
                 />
               </FormControl>
               <FormMessage />
