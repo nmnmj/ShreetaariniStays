@@ -26,7 +26,7 @@ export default function RoomForm({ onSubmit, initialData }: RoomFormProps) {
     defaultValues: initialData || {
       name: "",
       description: "",
-      price: 0,
+      price: "",
       amenities: [],
       images: [],
       isAvailable: true
@@ -49,7 +49,7 @@ export default function RoomForm({ onSubmit, initialData }: RoomFormProps) {
             </FormItem>
           )}
         />
-        
+
         <FormField
           control={form.control}
           name="description"
@@ -63,7 +63,7 @@ export default function RoomForm({ onSubmit, initialData }: RoomFormProps) {
             </FormItem>
           )}
         />
-        
+
         <FormField
           control={form.control}
           name="price"
@@ -72,16 +72,19 @@ export default function RoomForm({ onSubmit, initialData }: RoomFormProps) {
               <FormLabel>Price per Night (₹)</FormLabel>
               <FormControl>
                 <Input 
-                  type="number" 
-                  {...field} 
-                  onChange={e => field.onChange(parseFloat(e.target.value))}
+                  type="number"
+                  {...field}
+                  onChange={(e) => {
+                    const value = e.target.value;
+                    field.onChange(value ? value.toString() : "");
+                  }}
                 />
               </FormControl>
               <FormMessage />
             </FormItem>
           )}
         />
-        
+
         <FormField
           control={form.control}
           name="amenities"
@@ -118,7 +121,7 @@ export default function RoomForm({ onSubmit, initialData }: RoomFormProps) {
             </FormItem>
           )}
         />
-        
+
         <FormField
           control={form.control}
           name="images"
@@ -136,7 +139,7 @@ export default function RoomForm({ onSubmit, initialData }: RoomFormProps) {
             </FormItem>
           )}
         />
-        
+
         <FormField
           control={form.control}
           name="isAvailable"
@@ -153,7 +156,7 @@ export default function RoomForm({ onSubmit, initialData }: RoomFormProps) {
             </FormItem>
           )}
         />
-        
+
         <Button type="submit" className="w-full">
           {initialData ? 'Update Room' : 'Add Room'}
         </Button>

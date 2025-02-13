@@ -1,4 +1,4 @@
-import { pgTable, text, serial, numeric, array, boolean } from "drizzle-orm/pg-core";
+import { pgTable, text, serial, numeric, boolean } from "drizzle-orm/pg-core";
 import { createInsertSchema } from "drizzle-zod";
 import { z } from "zod";
 
@@ -12,7 +12,10 @@ export const rooms = pgTable("rooms", {
   isAvailable: boolean("is_available").notNull().default(true)
 });
 
-export const insertRoomSchema = createInsertSchema(rooms).omit({ id: true });
+// Extend the auto-generated schema to ensure price is handled as string
+export const insertRoomSchema = createInsertSchema(rooms, {
+  price: z.string().min(1, "Price is required")
+}).omit({ id: true });
 
 export const users = pgTable("users", {
   id: serial("id").primaryKey(),
