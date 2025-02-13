@@ -96,18 +96,23 @@ export default function Home() {
                 Welcome to Shree Taarini Home Stay. I'm Divyanshu Jay, your host, dedicated to providing you with a comfortable and spiritual stay experience near the sacred Mahakal Temple.
               </p>
               <div className="space-y-3">
-                <div className="flex items-center gap-2 text-orange-700">
+                <a href="tel:8770032703" className="flex items-center gap-2 text-orange-700 hover:text-orange-900 transition-colors">
                   <Phone className="h-5 w-5" />
-                  <a href="tel:8770032703">+91 8770032703</a>
-                </div>
-                <div className="flex items-center gap-2 text-orange-700">
+                  +91 8770032703
+                </a>
+                <a href="mailto:shreetaarini@gmail.com" className="flex items-center gap-2 text-orange-700 hover:text-orange-900 transition-colors">
                   <Mail className="h-5 w-5" />
-                  <a href="mailto:shreetaarini@gmail.com">shreetaarini@gmail.com</a>
-                </div>
-                <div className="flex items-center gap-2 text-orange-700">
+                  shreetaarini@gmail.com
+                </a>
+                <a 
+                  href="https://maps.app.goo.gl/rmAjpd6Yr3j5DKGu7"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2 text-orange-700 hover:text-orange-900 transition-colors"
+                >
                   <MapPin className="h-5 w-5" />
                   <span>167, Manchaman Ganesh Colony, Ujjain (M.P.)</span>
-                </div>
+                </a>
               </div>
             </div>
             <motion.div 
@@ -152,10 +157,12 @@ export default function Home() {
                 Enhance your stay with our on-premise beauty services at Blossom Beauty Parlour. 
                 Experience professional beauty treatments and pampering sessions during your spiritual journey.
               </p>
-              <Button variant="outline" size="lg" className="gap-2">
-                <Phone className="h-5 w-5" />
-                Book Appointment
-              </Button>
+              <a href="tel:8770032703">
+                <Button variant="outline" size="lg" className="gap-2 hover:bg-orange-200/50 transition-colors">
+                  <Phone className="h-5 w-5" />
+                  Book Appointment
+                </Button>
+              </a>
             </div>
           </motion.div>
         </div>

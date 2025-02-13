@@ -8,6 +8,7 @@ import Admin from "@/pages/admin";
 import Navbar from "@/components/layout/navbar";
 import Footer from "@/components/layout/footer";
 import { LanguageProvider } from "./lib/language-context";
+import { ThemeProvider } from "./lib/theme-provider";
 
 function Router() {
   return (
@@ -27,12 +28,14 @@ function Router() {
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <LanguageProvider>
-        <Router />
-        <Toaster />
-      </LanguageProvider>
-    </QueryClientProvider>
+    <ThemeProvider defaultTheme="light">
+      <QueryClientProvider client={queryClient}>
+        <LanguageProvider>
+          <Router />
+          <Toaster />
+        </LanguageProvider>
+      </QueryClientProvider>
+    </ThemeProvider>
   );
 }
 

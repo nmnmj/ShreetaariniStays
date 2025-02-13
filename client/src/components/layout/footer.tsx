@@ -13,14 +13,14 @@ export default function Footer() {
               {t('footer.contact')}
             </h3>
             <div className="space-y-2">
-              <a href="tel:8770032703" className="flex items-center gap-2 text-orange-700">
+              <a href="tel:8770032703" className="flex items-center gap-2 text-orange-700 hover:text-orange-900 transition-colors">
                 <Phone className="h-4 w-4" />
                 +91 8770032703
               </a>
-              <div className="flex items-center gap-2 text-orange-700">
+              <a href="mailto:shreetaarini@gmail.com" className="flex items-center gap-2 text-orange-700 hover:text-orange-900 transition-colors">
                 <Mail className="h-4 w-4" />
                 shreetaarini@gmail.com
-              </div>
+              </a>
             </div>
           </div>
 
@@ -28,10 +28,15 @@ export default function Footer() {
             <h3 className="text-lg font-semibold text-orange-800 mb-4">
               {t('footer.location')}
             </h3>
-            <div className="flex items-start gap-2 text-orange-700">
+            <a 
+              href="https://maps.app.goo.gl/rmAjpd6Yr3j5DKGu7" 
+              target="_blank" 
+              rel="noopener noreferrer" 
+              className="flex items-start gap-2 text-orange-700 hover:text-orange-900 transition-colors"
+            >
               <MapPin className="h-4 w-4 mt-1" />
               <p>167, Manchaman Ganesh Colony<br />Ujjain, Madhya Pradesh</p>
-            </div>
+            </a>
           </div>
 
           <div>

@@ -3,12 +3,13 @@ import { Button } from "@/components/ui/button";
 import { Phone, Languages } from "lucide-react";
 import { useLanguage } from "@/lib/language-context";
 import { motion } from "framer-motion";
+import { ThemeToggle } from "@/components/theme-toggle";
 
 export default function Navbar() {
   const { language, setLanguage, t } = useLanguage();
 
   return (
-    <motion.nav 
+    <motion.nav
       initial={{ opacity: 0, y: -20 }}
       animate={{ opacity: 1, y: 0 }}
       className="bg-gradient-to-r from-orange-50 to-orange-100 border-b border-orange-200 shadow-sm"
@@ -17,7 +18,7 @@ export default function Navbar() {
         <div className="flex justify-between h-16 items-center">
           <Link href="/">
             <a className="flex items-center gap-2">
-              <motion.img 
+              <motion.img
                 src="/shreeback.png"
                 alt="Shree Taarini Logo"
                 className="h-12 w-auto"
@@ -31,6 +32,10 @@ export default function Navbar() {
           </Link>
 
           <div className="flex items-center gap-4">
+            <motion.div whileHover={{ scale: 1.05 }}>
+              <ThemeToggle />
+            </motion.div>
+
             <motion.div whileHover={{ scale: 1.05 }}>
               <Button
                 variant="ghost"
