@@ -13,13 +13,13 @@ export default function Footer() {
               {t('footer.contact')}
             </h3>
             <div className="space-y-2">
-              <a href="tel:8770068048" className="flex items-center gap-2 text-orange-700">
+              <a href="tel:8770032703" className="flex items-center gap-2 text-orange-700">
                 <Phone className="h-4 w-4" />
-                +91 8770068048
+                +91 8770032703
               </a>
               <div className="flex items-center gap-2 text-orange-700">
                 <Mail className="h-4 w-4" />
-                info@shreetaarini.com
+                shreetaarini@gmail.com
               </div>
             </div>
           </div>
@@ -30,7 +30,7 @@ export default function Footer() {
             </h3>
             <div className="flex items-start gap-2 text-orange-700">
               <MapPin className="h-4 w-4 mt-1" />
-              <p>{t('footer.address')}</p>
+              <p>167, Manchaman Ganesh Colony<br />Ujjain, Madhya Pradesh</p>
             </div>
           </div>
 

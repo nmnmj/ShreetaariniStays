@@ -44,7 +44,7 @@ export default function Navbar() {
             </motion.div>
 
             <motion.div whileHover={{ scale: 1.05 }}>
-              <a href="tel:8770068048">
+              <a href="tel:8770032703">
                 <Button variant="outline" className="gap-2 hover:bg-orange-200/50 transition-colors">
                   <Phone className="h-4 w-4" />
                   {t('nav.callNow')}

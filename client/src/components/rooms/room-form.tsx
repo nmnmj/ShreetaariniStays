@@ -33,9 +33,18 @@ export default function RoomForm({ onSubmit, initialData }: RoomFormProps) {
     }
   });
 
+  const handleSubmit = (data: InsertRoom) => {
+    // Ensure price is a number before submitting
+    const formattedData = {
+      ...data,
+      price: Number(data.price)
+    };
+    onSubmit(formattedData);
+  };
+
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+      <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-4">
         <FormField
           control={form.control}
           name="name"
@@ -131,7 +140,7 @@ export default function RoomForm({ onSubmit, initialData }: RoomFormProps) {
                 <Textarea
                   {...field}
                   value={field.value?.join('\n')}
-                  onChange={e => field.onChange(e.target.value.split('\n'))}
+                  onChange={e => field.onChange(e.target.value.split('\n').filter(url => url.trim()))}
                 />
               </FormControl>
               <FormMessage />
