@@ -1,0 +1,84 @@
+Project Overview:
+Create a Progressive Web App (PWA) for Shree Taarini Home Stay with a devotional Mahakal Temple theme, strong SEO optimization, and a modular full-stack architecture. The app will include an admin panel for room management and a user-friendly interface for visitors.
+
+Core Requirements:
+1. PWA Setup
+Implement service workers for offline functionality, caching, and fast loading.
+
+Add a manifest.json file with app icons (use the attached logo as the primary icon).
+
+Ensure HTTPS compliance and app installability.
+
+2. SEO Optimization
+Meta tags: Include title, description, and keywords (e.g., "Shree Taarini Home Stay," "Mahakal Temple Accommodation").
+
+Structured data (Schema.org) for LocalBusiness, LodgingBusiness, and TouristAttraction.
+
+Optimize images (compress, lazy-load, and use alt tags).
+
+Server-side rendering (SSR) or static site generation (SSG) for critical pages.
+
+3. Frontend (React/Next.js)
+Home Page:
+
+Hero section with a Mahakal Temple background image (provided by the user) and devotional design elements (e.g., trishul icons, Om symbols).
+
+Room Gallery: Grid/cards displaying room images, prices, amenities (AC, Wi-Fi), and a "Book Now" button.
+
+Floating "Call Now" button that triggers a phone call to +91 8770068048 (use tel:8770068048).
+
+Theme:
+
+Color scheme: Saffron, gold, and white.
+
+Devotional fonts (e.g., Sanskrit-style headings).
+
+Subtle animations (e.g., diya lamps, aarti effects).
+
+4. Backend (Node.js/Express + MongoDB)
+REST API Routes:
+
+GET /api/rooms: Fetch room details.
+
+PUT/POST/DELETE /api/rooms: Admin-only endpoints for updating rooms.
+
+Database Schema:
+
+js
+Copy
+Room: {  
+  name: String,  
+  price: Number,  
+  description: String,  
+  amenities: [String],  
+  images: [String],  
+  isAvailable: Boolean  
+}  
+5. Admin Panel (Protected Route)
+Route: /admin (accessible only after login).
+
+Features:
+
+Secure JWT-based authentication for admin (credentials stored in environment variables).
+
+Dashboard to add/delete rooms, update prices, upload images (cloud storage integration like Firebase/Cloudinary), and toggle availability.
+
+Preview room cards in real-time.
+
+6. Additional Features
+Reviews/Testimonials Section: User-submitted reviews (moderated by admin).
+
+Google Maps Integration: Location of the homestay near Mahakal Temple.
+
+PWA Splash Screen: Use the provided logo.
+
+Deliverables:
+Responsive, modular codebase (split into client and server directories).
+
+SEO audit report (via Lighthouse).
+
+Admin credentials setup guide.
+
+Documentation for room updates/image uploads.
+
+Note: Replace placeholder images (e.g., Mahakal Temple background, logo) with files provided by the client.
