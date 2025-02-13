@@ -1,4 +1,6 @@
-import { type Room, type InsertRoom, type User, type InsertUser } from "@shared/schema";
+import { rooms, users, type Room, type InsertRoom, type User, type InsertUser } from "@shared/schema";
+import { db } from "./db";
+import { eq } from "drizzle-orm";
 
 export interface IStorage {
   // Room operations
@@ -7,75 +9,76 @@ export interface IStorage {
   createRoom(room: InsertRoom): Promise<Room>;
   updateRoom(id: number, room: Partial<InsertRoom>): Promise<Room | undefined>;
   deleteRoom(id: number): Promise<boolean>;
-  
+
   // User operations
   getUser(id: number): Promise<User | undefined>;
   getUserByUsername(username: string): Promise<User | undefined>;
   createUser(user: InsertUser): Promise<User>;
 }
 
-export class MemStorage implements IStorage {
-  private rooms: Map<number, Room>;
-  private users: Map<number, User>;
-  private roomId: number;
-  private userId: number;
-
-  constructor() {
-    this.rooms = new Map();
-    this.users = new Map();
-    this.roomId = 1;
-    this.userId = 1;
-
-    // Create default admin user
-    this.createUser({
-      username: "admin",
-      password: "admin123",
-      isAdmin: true
-    } as InsertUser);
-  }
-
+export class DatabaseStorage implements IStorage {
   async getRooms(): Promise<Room[]> {
-    return Array.from(this.rooms.values());
+    return await db.select().from(rooms);
   }
 
   async getRoom(id: number): Promise<Room | undefined> {
-    return this.rooms.get(id);
+    const [room] = await db.select().from(rooms).where(eq(rooms.id, id));
+    return room;
   }
 
   async createRoom(room: InsertRoom): Promise<Room> {
-    const id = this.roomId++;
-    const newRoom = { ...room, id };
-    this.rooms.set(id, newRoom);
+    const [newRoom] = await db.insert(rooms).values(room).returning();
     return newRoom;
   }
 
   async updateRoom(id: number, room: Partial<InsertRoom>): Promise<Room | undefined> {
-    const existing = this.rooms.get(id);
-    if (!existing) return undefined;
-    
-    const updated = { ...existing, ...room };
-    this.rooms.set(id, updated);
+    const [updated] = await db
+      .update(rooms)
+      .set(room)
+      .where(eq(rooms.id, id))
+      .returning();
     return updated;
   }
 
   async deleteRoom(id: number): Promise<boolean> {
-    return this.rooms.delete(id);
+    const [deleted] = await db
+      .delete(rooms)
+      .where(eq(rooms.id, id))
+      .returning();
+    return !!deleted;
   }
 
   async getUser(id: number): Promise<User | undefined> {
-    return this.users.get(id);
+    const [user] = await db.select().from(users).where(eq(users.id, id));
+    return user;
   }
 
   async getUserByUsername(username: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(u => u.username === username);
+    const [user] = await db.select().from(users).where(eq(users.username, username));
+    return user;
   }
 
   async createUser(user: InsertUser): Promise<User> {
-    const id = this.userId++;
-    const newUser = { ...user, id };
-    this.users.set(id, newUser);
+    const [newUser] = await db.insert(users).values({
+      ...user,
+      isAdmin: false // Ensure regular users can't be admin
+    }).returning();
     return newUser;
   }
 }
 
-export const storage = new MemStorage();
+// Create default admin user on startup
+async function createDefaultAdmin() {
+  const storage = new DatabaseStorage();
+  const existingAdmin = await storage.getUserByUsername("admin");
+  if (!existingAdmin) {
+    await db.insert(users).values({
+      username: "admin",
+      password: "admin123",
+      isAdmin: true
+    });
+  }
+}
+
+export const storage = new DatabaseStorage();
+createDefaultAdmin().catch(console.error);
